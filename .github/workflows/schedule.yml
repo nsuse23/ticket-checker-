@@ -1,17 +1,15 @@
-# trigger schedule
-
-name: ticket-checker2
+name: ticket-checker
 
 on:
   schedule:
     - cron: "*/1 * * * *"
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
@@ -20,4 +18,3 @@ jobs:
 
       - name: Run script
         run: python ticket_checker.py
-
