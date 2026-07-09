@@ -1,6 +1,6 @@
 # trigger schedule
 
-name: ticket-checker
+name: ticket-checker2
 
 on:
   schedule:
