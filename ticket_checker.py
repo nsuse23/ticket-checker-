@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 
 WEBHOOK_URL = "https://discord.com/api/webhooks/1524383227018608850/zXnnGCtpDSKA7EM3fqpKvb-gpHXtolY2cO5jqOJqr2xiM2ZZ27HZ1QedkTmAoKS7E917"
 
-# ★ URLごとに名前を付ける（Shiho専用）
 TARGETS = [
     {
         "name": "なにわ北海道（2625501）",
@@ -13,6 +12,14 @@ TARGETS = [
     {
         "name": "なにわ福岡（2625504）",
         "url": "https://ticket.pia.jp/sp/ticketInformation.do?eventCd=2625504&rlsCd=001"
+    },
+    {
+        "name": "なにわ横アリ（2625577）",
+        "url": "https://ticket.pia.jp/sp/ticketInformation.do?eventCd=2625577&rlsCd=001"
+    },
+    {
+        "name": "なにわ大阪7月（2625574）",
+        "url": "https://ticket.pia.jp/sp/ticketInformation.do?eventCd=2625574&rlsCd=001"
     },
     {
         "name": "トニセン大宮（2621541）",
@@ -24,7 +31,6 @@ TARGETS = [
     }
 ]
 
-# ★ Shiho専用：販売開始と判定するキーワード
 KEYWORDS = ["販売中", "本日販売初日"]
 
 def send_discord_message(text):
@@ -44,7 +50,6 @@ def check_ticket(target):
         soup = BeautifulSoup(html, "html.parser")
         page_text = soup.text
 
-        # ★ キーワード判定
         for kw in KEYWORDS:
             if kw in page_text:
                 send_discord_message(
@@ -64,8 +69,7 @@ def check_ticket(target):
         return False
 
 if __name__ == "__main__":
-    while True:
-        for target in TARGETS:
-            if check_ticket(target):
-                exit()  # どれか1つでも販売開始したら終了
-        time.sleep(30)
+    for target in TARGETS:
+        if check_ticket(target):
+            exit()
+
