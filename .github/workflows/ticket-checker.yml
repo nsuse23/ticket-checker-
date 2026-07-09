@@ -1,3 +1,5 @@
+# trigger schedule
+
 name: ticket-checker
 
 on:
