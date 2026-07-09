@@ -1,6 +1,7 @@
 name: ticket-checker
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "* * * * *"
 
