@@ -20,3 +20,4 @@ jobs:
 
       - name: Run script
         run: python ticket_checker.py
+
